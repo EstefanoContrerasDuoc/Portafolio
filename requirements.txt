@@ -1,0 +1,8 @@
+pdfminer.six
+python-docx
+weasyprint
+Jinja2
+google-generativeai
+python-dotenv
+google-genai
+

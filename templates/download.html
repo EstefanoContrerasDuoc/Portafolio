@@ -1,0 +1,16 @@
+<!-- templates/download.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Descargar Currículums</title>
+</head>
+<body>
+    <h1>¡Currículums generados!</h1>
+    <p>Puedes descargarlos a continuación:</p>
+    <ul>
+        <li><a href="{{ url_for('download_file', filename=file1) }}">Descargar CV 1</a></li>
+        <li><a href="{{ url_for('download_file', filename=file2) }}">Descargar CV 2</a></li>
+    </ul>
+</body>
+</html>

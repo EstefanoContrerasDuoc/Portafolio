@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+   
+<head>
+    <title>2Currículum de {{ nombre }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        h2 {
+            color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+     <meta charset="UTF-8">
+</head>
+<body>
+    <h1>{{ nombre }}</h1>
+
+    <h2>Experiencia Laboral</h2>
+    {% if experiencia %}
+        <ul>
+        {% for exp in experiencia %}
+            <li>{{ exp }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontró experiencia laboral.</p>
+    {% endif %}
+
+    <h2>Educación</h2>
+    {% if formacion %}
+    <ul>
+    {% if formacion is string %}
+        <li>{{ formacion }}</li>
+    {% else %}
+        {% for edu in formacion %}
+            <li>{{ edu }}</li>
+        {% endfor %}
+    {% endif %}
+    </ul>
+{% else %}
+    <p>No se encontró formación académica.</p>
+{% endif %}
+
+    <h2>Habilidades</h2>
+    {% if competencias %}
+        <ul>
+        {% for skill in  competencias %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron habilidades.</p>
+    {% endif %}
+</body>
+</html>
