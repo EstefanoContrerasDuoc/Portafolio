@@ -5,7 +5,11 @@ import json
 def formatear_datos(raw_data):
 
     
-    prompt = """Formatea este curriculum a JSON con los siguientes campos obligatorios: nombre:, sumario:, experiencia:, competencias:, contacto:, formacion:."""+raw_data
+    prompt = """
+Convierte el siguiente currículum al formato JSON. Los único campos obligatorios son "Nombre", "Contacto" (si hay más de un contacto que sea lista) y "Titulo" (encuentra su titulo). El resto de la información enfrascala en 4 Secciones 
+Ejemplo: "Seccion1: El sumario del curriculum", "Seccion2: Experiencia del curriculum subseccion2:experiencia 2, subseccion3:experiencia3", "Seccion4: Sumario del usuario", "Seccion5: Pasatiempos", si encuentras más secciones enumeralas y crealas pero mantén la nomenclaruta de SeccionN 
+y si esta seccion tiene más subsecciones hace una lista dentro de esta sección. Currículum a convertir:
+""" + raw_data
 
     client = genai.Client(api_key="AIzaSyAX-Z4PrvJ8iBZtkYWPrbaPzv3ylX-qepQ") 
 
