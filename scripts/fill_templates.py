@@ -4,8 +4,7 @@ from flask import render_template
 
 def generate_pdf_weasyprint(html_content, output_path,css_path=None):
 
-    print(f"Generando PDF para: {output_path} con CSS: {css_path}") # Añade esta línea
-
+    print(f"Generando PDF para: {output_path} con CSS: {css_path}")
     if css_path:
 
         css_stylesheet = CSS(filename=css_path)
