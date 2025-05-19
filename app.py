@@ -2,7 +2,8 @@ from flask import Flask, request, render_template, redirect, url_for, send_file
 import os
 from scripts.extract_data import extract_raw_data
 from scripts.format_json import formatear_datos
-from scripts.fill_templates import fill_templates
+from scripts.fill_templates import fill_templates, generate_pdf_weasyprint
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'

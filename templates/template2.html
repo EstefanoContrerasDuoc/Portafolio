@@ -1,81 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{{ nombre }} - CV</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            color: #333;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        .contacto p {
-            margin: 0;
-        }
-        ul {
-            margin-top: 5px;
-            padding-left: 20px;
-        }
-        .seccion {
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>Currículum - {{ Nombre }}</title>
+    <link rel="stylesheet" href="../static/css/estilos1.css">
 </head>
 <body>
 
-    <h1>{{ nombre }}</h1>
-    <h2>{{ titulo }}</h2>
-
-    <div class="seccion contacto">
-        <h3>Contacto</h3>
-        {% for dato in Contacto %}
-            <p>{{ dato }}</p>
-        {% endfor %}
-    </div>
-
-    <div class="seccion">
-        <h3>Perfil Personal</h3>
-        <p>{{ Campo1['Perfil Personal'] }}</p>
-    </div>
-
-    <div class="seccion">
-        <h3>Habilidades</h3>
-        <ul>
-            {% for habilidad in Campo1.Habilidades %}
-                <li>{{ habilidad }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="seccion">
-        <h3>Competencias</h3>
-        <div>
-            <strong>Backend:</strong>
-            <ul>
-                {% for skill in Campo1.Competencias.Backend %}
-                    <li>{{ skill }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            <strong>Frontend:</strong>
-            <ul>
-                {% for skill in Campo1.Competencias.Frontend %}
-                    <li>{{ skill }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-
-    <div class="seccion">
-        <h3>Educación</h3>
-        <p>{{ Campo2.Educacion }}</p>
-    </div>
+    <h1>{{ Nombre }}</h1>
+    <h2>{{ Titulo }}</h2>
 
 </body>
 </html>

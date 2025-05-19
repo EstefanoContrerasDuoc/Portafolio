@@ -1,14 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Subir CV</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Change-it</title>
+<link rel="stylesheet" href="../static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-    <h1>Sube tu CV</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="cv" accept=".pdf,.docx" required>
-        <button type="submit">Procesar CV</button>
+
+  <!-- Navegación -->
+  <nav>
+    <div class="logo">Change-it</div>
+    <div class="nav-links">
+      <a href="instrucciones.html">Instrucciones</a>
+      <a href="#objetivo">Objetivo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- Sección Principal -->
+<header class="hero-section">
+  <div class="hero-content">
+    <h1>Transforma tu Currículum de Manera Inteligente</h1>
+    <p>Potencia tu perfil profesional utilizando nuestra tecnología avanzada.</p>
+    <div class="buttons">
+      <!-- Generar puede ser otro botón funcional en el futuro -->
+      <button class="generate-btn" type="button">Generar</button>
+
+      <!-- Botón para subir archivo, al hacer clic activa el input file oculto -->
+      <button class="upload-btn" type="button" onclick="document.getElementById('cvInput').click();">
+        Subir archivo
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Sección de arrastre del currículum -->
+<section class="drop-section">
+  <div class="drop-box" id="dropBox">
+    <p>Arrastra tu Curriculum aquí</p>
+    <form action="/" method="post" enctype="multipart/form-data" id="uploadForm">
+      <!-- Input de archivo oculto que se puede activar por el botón -->
+      <input
+        type="file"
+        name="cv"
+        id="cvInput"
+        accept=".pdf,.docx"
+        style="display: none"
+        onchange="document.getElementById('uploadForm').submit();"
+        required
+      >
     </form>
-</body>
-</html>
+  </div>
+</section>
+
+<script>
+  // Arrastrar y soltar
+  const dropBox = document.getElementById("dropBox");
+  const input = document.getElementById("cvInput");
+  const form = document.getElementById("uploadForm");
+
+  dropBox.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    dropBox.classList.add("drag-over");
+  });
+
+  dropBox.addEventListener("dragleave", function () {
+    dropBox.classList.remove("drag-over");
+  });
+
+  dropBox.addEventListener("drop", function (e) {
+    e.preventDefault();
+    dropBox.classList.remove("drag-over");
+
+    if (e.dataTransfer.files.length > 0) {
+      input.files = e.dataTransfer.files;
+      form.submit(); // Enviamos el formulario automáticamente
+    }
+  });
+</script>
+
+  <section id="objetivo" class="info-section">
+    <h2><span>🎯</span> Objetivo</h2>
+    <p>
+      En Change-it, nuestro objetivo es ayudarte a mejorar tu currículum utilizando tecnología avanzada de análisis y optimización. Gracias a nuestro sistema inteligente, podemos detectar áreas de mejora, reorganizar la información y hacer tu currículum más atractivo para los reclutadores.
+    </p>
+    <p>
+      ¿Por qué es importante tener un currículum optimizado? El mercado laboral está cambiando rápidamente, y tener un currículum que destaque es fundamental para abrirte las puertas a nuevas oportunidades.
+    </p>
+    <div class="objective-stats">
+      <div>
+        <h3>📈 Oportunidades de Mejora</h3>
+        <p>Detectamos automáticamente las áreas donde tu currículum puede mejorar.</p>
+      </div>
+      <div>
+        <h3>⚡ Velocidad</h3>
+        <p>Optimiza tu currículum en cuestión de minutos.</p>
+      </div>
+      <div>
+        <h3>🔍 Adaptabilidad</h3>
+        <p>Aseguramos que tu currículum se ajuste a las tendencias actuales del mercado laboral.</p>
+      </div>
+    </div>
+    <img src="https://via.placeholder.com/600x300.png?text=Objetivo" alt="Objetivo" class="img-responsive">
+  </section>
+
+  <section id="nosotros" class="info-section">
+    <h2><span>👥</span> Nosotros</h2>
+    <p>
+      Change-it es un equipo multidisciplinario de desarrolladores, diseñadores y expertos en recursos humanos. Nuestra misión es ofrecer herramientas tecnológicas que te ayuden a mejorar tu perfil profesional.
+    </p>
+    <p>
+      Trabajamos con pasión para brindar soluciones que faciliten el proceso de creación de currículums y aumenten las posibilidades de éxito en el mundo laboral.
+    </p>
+    <div class="team">
+      <div class="team-member">
+        <img src="https://via.placeholder.com/100" alt="Miembro 1">
+        <h3>Juan Pérez</h3>
+        <p>Desarrollador Frontend</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/100" alt="Miembro 2">
+        <h3>Ana Gómez</h3>
+        <p>Diseñadora UX/UI</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/100" alt="Miembro 3">
+        <h3>Pedro López</h3>
+        <p>Experto en RRHH</p>
+      </div>
+    </div>
+    <img src="https://via.placeholder.com/600x300.png?text=Nosotros" alt="Nosotros" class="img-responsive">
+  </section>
+
+  <section id="contacto" class="info-section">
+    <h2><span>📞</span> Contacto</h2>
+    <p>
+      ¡Nos encantaría saber de ti! Si tienes alguna pregunta, inquietud o sugerencia, puedes comunicarte con nosotros fácilmente a través de los siguientes métodos.
+    </p>
+
+    <div class="contact-info">
+      <div class="contact-method">
+        <h3>✉️ Correo Electrónico</h3>
+        <p>Envíanos un correo a <strong><a href="mailto:soporte@changeit.com">soporte@changeit.com</a></strong></p>
+      </div>
+      <div class="contact-method">
+        <h3>📱 Redes Sociales</h3>
+        <p>Síguenos en nuestras redes sociales para recibir noticias y actualizaciones:</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/ChangeIt" target="_blank">📘 Facebook</a>
+          <a href="https://www.twitter.com/ChangeIt" target="_blank">🐦 Twitter</a>
+          <a href="https://www.linkedin.com/company/changeit" target="_blank">🔗 LinkedIn</a>
+        </div>
+      </div>
+      <div class="contact-method">
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="contact-form">
+      <h3>¡Envíanos un Mensaje!</h3>
+      <p>Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+      <form action="mailto:soporte@changeit.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required placeholder="Tu correo electrónico">
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje:</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Tu mensaje..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+      </form>
+    </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Change-it. Todos los derechos reservados.
+  </footer>
