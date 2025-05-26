@@ -6,10 +6,55 @@
     <link rel="stylesheet" href="../static/css/estilos.css">
 </head>
 <body>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 
-    <h1>{{ Nombre }}</h1>
-    <h2>{{ Titulo }}</h2>
+<div class="container">
+  <div class="header">
+    <div class="full-name">
+      <span class="first-name">{{ data.nombre }}</span> 
+      <span class="last-name">{{ data.apellido }}</span>
+    </div>
+    <div class="contact-info">
+        <span class="email">Contacto: </span>
+        {% for item in data.contacto %}
+            <span class="contact-val">{{ item }}</span>
+            {% if not loop.last %}
+            <span class="separator"> </span>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <div class="about">
+      <span class="position">{{ data.profesion }}</span>
+      <span class="desc"> 
+        {{ data.sumario}}
+      </span>
+    </div>
+  </div>
 
+{% for section in data["secciones"] %}
+  <div class="section">
+    <div class="first-name">{{ section["titulo"] }}</div>
+    <div class="section__list">
+      {% for item in section["items"] %}
+        <div class="section__list-item">
+          <div class="text">{{ item }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+  </div>
+
+
+
+     
+
+
+
+
+
+ 
 
 </body>
 </html>

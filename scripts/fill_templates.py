@@ -31,12 +31,12 @@ def fill_templates(json_data):
     print("--------------TEST: Ruta CSS:--------------", css_path_absoluto)
     print("--------------TEST: Existe?--------------", os.path.isfile(css_path_absoluto))
     # Renderizar template1
-    rendered_html1 = render_template('template1.html', **json_data)
+    rendered_html1 = render_template('template1.html', data=json_data)
     output_path1 = os.path.join(output_dir, 'plantilla1.pdf')
     generate_pdf_weasyprint(rendered_html1, output_path1, css_path_absoluto)
 
     # Renderizar template2
-    rendered_html2 = render_template('template2.html', **json_data)
+    rendered_html2 = render_template('template2.html', data=json_data)
     output_path2 = os.path.join(output_dir, 'plantilla2.pdf')
     generate_pdf_weasyprint(rendered_html2, output_path2, css_path_absoluto1)
 
