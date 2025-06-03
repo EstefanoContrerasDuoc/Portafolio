@@ -1,10 +1,24 @@
 body {
-    font-family: Arial, sans-serif;
-    color: #00ff00;
-    background-color: #ff0000;
+
 }
 
 h1 {
     color: #2c3e50;
     font-size: 24px;
+}
+@page {
+    /* Set page margins to zero */
+    margin: 0;
+    padding: 0; /* Add padding just in case */
+}
+
+html, body {
+    /* Ensure no default browser margins/padding */
+    margin: 0;
+    padding: 0;
+    width: 100%;  /* Ensure they take full width */
+    height: 100%; /* Ensure they take full height */
+        font-family: Arial, sans-serif;
+    color: #00ff00;
+    background-color: #ff0000;
 }

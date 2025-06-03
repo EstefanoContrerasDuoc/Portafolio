@@ -9,7 +9,8 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 
 <div class="container">
-  <div class="header">
+
+    <div class="header">
     <div class="full-name">
       <span class="first-name">{{ data.nombre }}</span> 
       <span class="last-name">{{ data.apellido }}</span>
@@ -23,32 +24,28 @@
             {% endif %}
         {% endfor %}
     </div>
-    
+      </div>
     <div class="about">
-      <span class="position">{{ data.profesion }}</span>
+      <span class="position">{{ data.profesion }}:</span>
       <span class="desc"> 
         {{ data.sumario}}
       </span>
     </div>
-  </div>
+
 
 {% for section in data["secciones"] %}
   <div class="section">
-    <div class="first-name">{{ section["titulo"] }}</div>
-    <div class="section__list">
+    <div class="titulo">{{ section["titulo"] }}</div>
       {% for item in section["items"] %}
-        <div class="section__list-item">
-          <div class="text">{{ item }}</div>
-        </div>
+          <div class="items">{{ item }}</div>
       {% endfor %}
-    </div>
   </div>
 {% endfor %}
   </div>
 
 
 
-     
+    
 
 
 
