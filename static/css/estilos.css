@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
 
+}
 html, body {
     /* Ensure no default browser margins/padding */
     margin: 0;
@@ -15,8 +15,6 @@ html, body {
 body {
   min-height: 100%;  
   background: #ffffff;
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
   color: #222;
   font-size: 14px;
   line-height: 26px;
@@ -28,82 +26,130 @@ body {
   background: #fff;
   margin: 0px auto 0px; 
   border-radius: 3px;  
-  padding: 40px;
-  margin-top: 30px;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .about .position {
   font-weight: 800;
   color: black;
+  font-size: large;
+  font-family:"Roboto Flex", sans-serif;
 }
 .about .desc {
   font-weight: 500;
   color: rgb(54, 54, 54);
+  font-family:"Roboto Flex", sans-serif;
 }
 .about{
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+  font-family:"Roboto Flex", sans-serif;
 }
 .header {
-  margin-bottom: 50px;
-  
-  .full-name {
-    font-size: 40px;
+  margin-bottom: 25px;
+
+}
+.header .full-name .first-name{
+    font-family:"Roboto Flex", sans-serif;
+    font-size: 2.5em;
+    font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 5px;
+
   }
-  
-  .first-name {
-    font-weight: 700;
+.header .full-name .last-name {
+    font-weight: 500;
+    font-family:"Roboto Flex", sans-serif;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    color: #3f3f3f;
   }
-  
-  .last-name {
-    font-weight: 300;
-  }
-  
-  .contact-info {
+.header .contact-info {
     margin-bottom: 20px;
+    font-weight: 200;
+    font-family:"Roboto Flex", sans-serif;
+    color: #4d4d4d;
+
   }
+
+
   
-  .email ,
-  .phone {
-    color: #999;
-    font-weight: 300;
-  } 
-  
-  .separator {
+
+  .header .separator {
     height: 10px;
     display: inline-block;
     border-left: 2px solid #999;
     margin: 0px 10px;
   }
   
-  .position {
-    font-weight: bold;
-    display: inline-block;
-    margin-right: 10px;
-    text-decoration: underline;
-  }
+  
+  
+.sections-columns {
+    display: flex; /* Makes the container a flex container */
+    justify-content: space-between; /* Distributes space between columns */
+    gap:5px; /* Adds space between the columns */
+    margin-top: 10px; /* Add some space above the columns */
+
+}
+
+.left-column,
+.right-column {
+    flex: 1; /* Allows columns to grow and shrink equally */
 }
 
 
-
 .section {
-  margin-bottom: 30px;
+  padding: 15px;
+  font-family:"Roboto Flex", sans-serif;
 }
 
 .section .titulo {
   font-weight: 800;
   font-style:bold;
   color: black;
+  font-size:18px;
+  margin-bottom:5px;
+  font-family:"Roboto Flex", sans-serif;
+
+}
+.section .study-title{
+  font-size:medium;
+  font-family:"Roboto Flex", sans-serif;
+}
+.section .job-title {
+  font-weight: 600;
+  margin-top: 10px;
+  font-family:"Roboto Flex", sans-serif;
+}
+.section .duration {
+  font-weight: 300;
+  font-family:"Roboto Flex", sans-serif;
 }
 
 .section .items {
   font-weight: 500;
   color: rgb(54, 54, 54);
+  font-family:"Roboto Flex", sans-serif;
 }
 
 
+.experience-item {
+    margin-bottom: 20px; /* Space between items */
+    padding-bottom: 20px; /* Space for the line and padding below it */
+    border-bottom: 1px solid #e0e0e0; /* The grey horizontal line */
+    font-family:"Roboto Flex", sans-serif;
+}
 
+/* Remove the border from the last item in the list */
+.experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0; /* Remove extra margin if this is the last item in the section */
+    padding-bottom: 0;
+    font-family:"Roboto Flex", sans-serif;
+}
+.section .study-description {
+  font-weight:500;
+  font-family:"Roboto Flex", sans-serif;
+}
 
 
 
