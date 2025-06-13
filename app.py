@@ -44,7 +44,7 @@ def download_file(filename):
     path = os.path.join(app.config['OUTPUT_FOLDER'], filename)
     if not os.path.exists(path):
         return f"Archivo no encontrado: {filename}", 404
-    return send_file(path, as_attachment=True)
+    return send_file(path, as_attachment=False)
 
 # Rutas estáticas sin funcionalidad
 @app.route('/about')
