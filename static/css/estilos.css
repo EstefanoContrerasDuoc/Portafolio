@@ -42,8 +42,9 @@ body {
   font-family:"Roboto Flex", sans-serif;
 }
 .about{
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   font-family:"Roboto Flex", sans-serif;
+  text-transform: uppercase;
 }
 .header {
   margin-bottom: 25px;
@@ -65,13 +66,21 @@ body {
   }
 .header .contact-info {
     margin-bottom: 20px;
-    font-weight: 200;
+    font-weight: 500;
     font-family:"Roboto Flex", sans-serif;
     color: #4d4d4d;
-
+    text-transform: uppercase;
   }
-
-
+.header  .email{
+  font-weight: 500;
+  font-family:"Roboto Flex", sans-serif;
+  text-transform: uppercase;
+}
+.header .contact-val{
+  font-weight: 500;
+  font-family:"Roboto Flex", sans-serif;
+  text-transform: uppercase;
+}
   
 
   .header .separator {
@@ -106,9 +115,10 @@ body {
   font-weight: 800;
   font-style:bold;
   color: black;
-  font-size:18px;
+  font-size:16px;
   margin-bottom:5px;
   font-family:"Roboto Flex", sans-serif;
+  text-transform: uppercase;
 
 }
 .section .study-title{

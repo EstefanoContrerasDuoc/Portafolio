@@ -4,142 +4,126 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Change-it</title>
-  <link rel="stylesheet" href="../static/css/diseño.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-    .drop-box {
-      border: 2px dashed #ccc;
-      border-radius: 10px;
-      padding: 40px;
-      text-align: center;
-      font-size: 18px;
-      color: #666;
-      transition: background-color 0.3s, border-color 0.3s;
-      margin: 20px;
-    }
-    .drop-box.dragover {
-      background-color: #f0f8ff;
-      border-color: #007bff;
-      color: #007bff;
-    }
-  </style>
+<link rel="stylesheet" href="../static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Navegación -->
-  <nav>
-    <a href="/" class="logo">Change-it</a>
-    <div class="nav-links">
-      <a href="#instrucciones">Instrucciones</a>
-      <a href="#objetivo">Objetivo</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#contacto">Contacto</a>
-    </div>
-  </nav>
+<nav>
+  <a class="logo" href="/index">Change-it   </a>
+  <div class="nav-links">
+    <a href="/instrucciones">Instrucciones</a>
+    <a href="/objetivo">Objetivo</a>
+    <a href="/nosotros">Nosotros</a>
+    <a href="/contacto">Contacto</a>
+  </div>
+</nav>
+<main class="main">
+<form id="cvForm" action="/" method="POST" enctype="multipart/form-data">
+  <div class="drop-box" style="width:300px;height:100px;border:2px dashed #888;display:flex;align-items:center;justify-content:center;">
+    Arrastra tu Curriculum aquí
+  </div>
+  <input type="file" name="cv" id="cvInput" style="display: none;" />
+  <p id="fileName"></p>
+  <button class="upload-btn" type="button">Subir archivo</button>
+  <button class="generate-btn" type="submit">Generar</button>
+</form>
+</main>
 
-  <!-- Sección Principal -->
-  <header class="hero-section">
-    <div class="hero-content">
-      <h1>Impulsa tu Carrera con un CV Inteligente</h1>
-      <p>Optimiza tu currículum con tecnología avanzada y destaca frente a los reclutadores.</p>
-
-      <!-- Formulario que contiene botones y archivo -->
-      <form id="uploadForm" action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" name="cv" id="cvInput" accept=".pdf,.docx" style="display: none" required />
-        <div class="buttons">
-          <button class="generate-btn" type="submit">Generar</button>
-          <button class="upload-btn" type="button" onclick="document.getElementById('cvInput').click();">Subir archivo</button>
-        </div>
-      </form>
-    </div>
-  </header>
-
-  <!-- Área de arrastre -->
-  <section class="drop-section">
-    <div class="drop-box">
-      <p>Arrastra tu currículum aquí para comenzar</p>
-    </div>
+  <!-- Secciones -->
+  <section id="instrucciones" class="info-section">
+    <h2>Instrucciones</h2>
+    <p>
+      Para comenzar, arrastra tu currículum en el área indicada o utiliza el botón de subir archivo.
+      Una vez cargado, presiona el botón "Generar" para procesar la información automáticamente.
+    </p>
   </section>
 
-  <!-- Secciones informativas -->
-  <section id="objetivo" class="info-section align-left">
-    <h2><span>🎯</span> Nuestro Objetivo</h2>
-    <p>En Change-it, queremos ayudarte a presentar la mejor versión de ti mismo...</p>
+  <section id="objetivo" class="info-section">
+    <h2>Objetivo</h2>
+    <p>
+      Nuestro objetivo es ayudarte a transformar tu currículum de forma inteligente, utilizando tecnología que detecta oportunidades de mejora, reorganiza la información y lo adapta a las tendencias del mercado.
+    </p>
   </section>
 
-  <section id="nosotros" class="info-section align-left">
-    <h2><span>👥</span> Sobre Nosotros</h2>
+  <section id="nosotros" class="info-section">
+    <h2>Nosotros</h2>
+    <p>
+      Somos un equipo multidisciplinario de desarrolladores, diseñadores y expertos en recursos humanos comprometidos con ofrecer herramientas que impulsen tu carrera profesional.
+    </p>
   </section>
 
-  <section id="contacto" class="info-section align-left">
-    <h2><span>📞</span> Contáctanos</h2>
+  <section id="contacto" class="info-section">
+    <h2>Contacto</h2>
+    <p>
+      ¿Tienes preguntas o sugerencias? Escríbenos a 
+      <a href="mailto:soporte@changeit.com">soporte@changeit.com</a> o síguenos en nuestras redes sociales.
+    </p>
   </section>
 
   <footer>
     &copy; 2025 Change-it. Todos los derechos reservados.
   </footer>
 
-  <!-- Script JavaScript -->
-  <script>
-    const dropBox = document.querySelector(".drop-box");
-    const fileInput = document.getElementById("cvInput");
-    const uploadForm = document.getElementById("uploadForm");
-    let archivoSeleccionado = null;
+  <!-- JavaScript -->
+<script>
 
-    dropBox.addEventListener("dragover", function (e) {
-      e.preventDefault();
-      dropBox.classList.add("dragover");
-      dropBox.innerText = "Suelta el archivo aquí";
-    });
+const dropBox = document.querySelector('.drop-box');
+const uploadBtn = document.querySelector('.upload-btn');
+const fileInput = document.getElementById('cvInput');
+const fileName = document.getElementById('fileName');
+const form = document.getElementById('cvForm');
 
-    dropBox.addEventListener("dragleave", function () {
-      dropBox.classList.remove("dragover");
-      dropBox.innerText = "Arrastra tu currículum aquí para comenzar";
-    });
+// Drag and drop events
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropBox.addEventListener(eventName, e => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+});
 
-    dropBox.addEventListener("drop", function (e) {
-      e.preventDefault();
-      dropBox.classList.remove("dragover");
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        archivoSeleccionado = files[0];
-        fileInput.files = files;
-        mostrarNombreArchivo(archivoSeleccionado);
-      }
-    });
+['dragenter', 'dragover'].forEach(eventName => {
+  dropBox.addEventListener(eventName, () => dropBox.classList.add('highlight'));
+});
 
-    document.querySelector(".generate-btn").addEventListener("click", function () {
-      console.log("Botón generar clickeado");
-      if (archivoSeleccionado) {
-        console.log("Archivo seleccionado:", archivoSeleccionado.name);
-        uploadForm.submit(); // Solo envía el formulario si hay archivo
-      } else {
-        alert("Por favor, carga o arrastra un archivo antes de generar.");
-      }
-    });
+['dragleave', 'drop'].forEach(eventName => {
+  dropBox.addEventListener(eventName, () => dropBox.classList.remove('highlight'));
+});
 
-    fileInput.addEventListener("change", function () {
-      if (fileInput.files.length > 0) {
-        archivoSeleccionado = fileInput.files[0];
-        mostrarNombreArchivo(archivoSeleccionado);
-      }
-    });
+dropBox.addEventListener('drop', (e) => {
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    // Assign the dropped file to the file input
+    fileInput.files = files;
+    fileName.textContent = `Archivo seleccionado: ${files[0].name}`;
+  }
+});
 
-    function mostrarNombreArchivo(archivo) {
-      dropBox.innerText = `Archivo cargado: ${archivo.name}`;
-    }
+// Button opens file picker
+uploadBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  fileInput.click();
+});
 
-    uploadForm.addEventListener("submit", function (e) {
-      console.log("Formulario enviado a:", uploadForm.action);
-      if (!archivoSeleccionado) {
-        e.preventDefault();
-        alert("Por favor, carga o arrastra un archivo antes de generar.");
-      }
-    });
-  </script>
+// File input change (for both direct selection and drag-and-drop)
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length > 0) {
+    fileName.textContent = `Archivo seleccionado: ${fileInput.files[0].name}`;
+  } else {
+    fileName.textContent = ''; // Clear text if no file is selected
+  }
+});
+
+// Form submit
+form.addEventListener('submit', function(e) {
+  if (!fileInput.files.length) {
+    e.preventDefault(); // Prevent form submission if no file
+    fileName.textContent = "Por favor, selecciona o arrastra un archivo.";
+  }
+  // If a file exists in fileInput.files, the form will submit normally
+  // because we are not preventing default for successful cases.
+});
+</script>
 
 </body>
 </html>

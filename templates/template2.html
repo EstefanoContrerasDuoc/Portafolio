@@ -2,13 +2,63 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Currículum - {{ Nombre }}</title>
-    <link rel="stylesheet" href="../static/css/estilos1.css">
+    <title>CV - {{ data.nombre }} {{ data.apellido }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos1.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="cv-container">
+    <aside class="sidebar">
+        <h1>{{ data.nombre }} {{ data.apellido }}</h1>
+        <h3>{{ data.profesion }}</h3>
+        <div class="contacto">
+            <h4>Contacto</h4>
+            <ul>
+                {% for item in data.contacto %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
 
-    <h1>{{ data.Nombre }}</h1>
-    <h2>{{ data.apellido }}</h2>
+    <main class="contenido">
+        <section class="sumario">
+            <h2>Resumen Profesional</h2>
+            <p>{{ data.sumario }}</p>
+        </section>
 
+        {% for section in data["secciones"] %}
+            <section class="bloque">
+                <h2>{{ section["titulo"] }}</h2>
+                {% if section["titulo"] == "Habilidades" %}
+                    <div class="habilidades">
+                        {% for item in section["items"] %}
+                            {% if ":" in item %}
+                                {% set skill = item.split(":")[0].strip() %}
+                                {% set level = item.split(":")[1].strip() %}
+                                <div class="skill">
+                                    <span class="skill-name">{{ skill }}</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: {{ level }}%;"></div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="skill">
+                                    <span class="skill-name">{{ item }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <ul class="listado">
+                        {% for item in section["items"] %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </section>
+        {% endfor %}
+    </main>
+</div>
 </body>
 </html>

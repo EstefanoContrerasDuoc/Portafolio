@@ -13,13 +13,13 @@
 
 <div class="container">
 
-    <div class="header">
+    <div class="header" style="border-bottom: 1px solid grey; padding-bottom: 10px;">
         <div class="full-name">
             <span class="first-name">{{ data.nombre }}</span> 
             <span class="last-name">{{ data.apellido }}</span>
         </div>
         <div class="contact-info">
-            <span class="email">Contacto: </span>
+            <span class="email">CONTACTO: </span>
             {% for item in data.contacto %}
                 <span class="contact-val">{{ item }}</span>
                 {% if not loop.last %}
