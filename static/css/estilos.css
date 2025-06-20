@@ -29,7 +29,56 @@ body {
   padding: 5px;
   margin-top: 5px;
 }
+.header {
+    display: flex; /* Makes the header a flex container */
+    justify-content: space-between; /* Pushes content to the ends: Full Name left, Contact Info right */
+    align-items: flex-start; /* Aligns items to the top of the header */
+    padding: 20px; /* Add some padding around your header content */
+    border-bottom: 1px solid #ccc; /
+}
 
+.header .full-name {
+    display: flex; /* Makes the full name section a flex container */
+    flex-direction: column; /* Stacks first name on top of last name */
+    color: #333; /* Darker color for better readability */
+    font-size: 3.5em;
+    font-family:"Roboto Flex", sans-serif;
+    text-transform: uppercase;
+}
+
+.full-name .first-name {
+    font-weight: bold;
+    font-family:"Roboto Flex", sans-serif;
+    text-transform: uppercase;
+    margin-bottom:20px;
+    font-weight: 800;
+}
+
+.header .full-name .last-name {
+    text-transform:capitalize;
+  font-family:"Roboto Flex", sans-serif;
+  text-transform: uppercase;
+    font-weight: 800;
+}
+
+.header .contact-info {
+    display: flex; /* Makes the contact info section a flex container */
+    flex-direction: column; /* Stacks contact items vertically */
+    align-items: flex-start; /* Aligns contact items to the right within their column */
+    margin-left:5px;
+  }
+
+.header .contact-info .contact-item {
+    display: flex; /* Makes each contact item a flex container */
+    align-items: center; /* Vertically aligns the icon and text */
+    margin-bottom: 5px; /* Adds a little space between contact items */
+  font-family:"Roboto Flex", sans-serif; /* Use a sans-serif font for contact info */
+}
+
+.header .contact-info .contact-item i {
+    margin-right: 8px; /* Adds space between the icon and the text */
+    font-size: 1.1em; /* Adjust icon size if needed */
+}
 .about .position {
   font-weight: 800;
   color: black;
@@ -45,60 +94,25 @@ body {
   margin-bottom: 20px;
   font-family:"Roboto Flex", sans-serif;
   text-transform: uppercase;
+  margin-top: 20px;
 }
-.header {
-  margin-bottom: 25px;
 
-}
-.header .full-name .first-name{
-    font-family:"Roboto Flex", sans-serif;
-    font-size: 2.5em;
-    font-weight: 900;
-    text-transform: uppercase;
-
-  }
-.header .full-name .last-name {
-    font-weight: 500;
-    font-family:"Roboto Flex", sans-serif;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    color: #3f3f3f;
-  }
-.header .contact-info {
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-family:"Roboto Flex", sans-serif;
-    color: #4d4d4d;
-    text-transform: uppercase;
-  }
-.header  .email{
-  font-weight: 500;
-  font-family:"Roboto Flex", sans-serif;
-  text-transform: uppercase;
-}
-.header .contact-val{
-  font-weight: 500;
-  font-family:"Roboto Flex", sans-serif;
-  text-transform: uppercase;
-}
-  
-
-  .header .separator {
+.header .separator {
     height: 10px;
     display: inline-block;
     border-left: 2px solid #999;
     margin: 0px 10px;
-  }
+}
   
   
   
 .sections-columns {
     display: flex; /* Makes the container a flex container */
     justify-content: space-between; /* Distributes space between columns */
-    gap:5px; /* Adds space between the columns */
     margin-top: 10px; /* Add some space above the columns */
-
+    gap: 20px;
 }
+
 
 .left-column,
 .right-column {
@@ -109,6 +123,7 @@ body {
 .section {
   padding: 15px;
   font-family:"Roboto Flex", sans-serif;
+  margin-bottom: 20px;
 }
 
 .section .titulo {

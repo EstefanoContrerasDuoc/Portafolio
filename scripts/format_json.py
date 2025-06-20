@@ -6,9 +6,9 @@ def formatear_datos(raw_data):
 
     
     prompt = """
-Quiero que tomes generes un diccionario JSON con el siguiente curriculum, campos obligatorios siendo Nombre, profesion,sumario(un sumario, desc, resumen o algo parecido que encuentres en el curriculum) y contacto(si tiene más de uno contactoN).
+Quiero que tomes generes un diccionario JSON con el siguiente curriculum, campos obligatorios siendo Nombre,apellido, profesion,sumario(un sumario, desc, resumen o algo parecido que encuentres en el curriculum), contacto(si tiene más de uno contactoN), Experiencia Profesional y Educación.
 
-No incluyas en las secciones los campos obligatorios(nombre,apellido,profesion,contacto,sumario) en lista simple.El resto tiene que ser como el ejemplo. Si encuentras experiencia laboral o educación, la priorizas en seccion 1 y 2.
+No incluyas en las secciones los campos obligatorios(Nombre,apellido, profesion,sumario, contacto, Experiencia Profesional y Educación.) en lista simple. El resto en lista_simple.
 
 Ejemplo de estructura
 
@@ -17,10 +17,14 @@ Ejemplo de estructura
   "apellido": "Tu Apellido",
   "profesion": "Arquitecta de Software",
   "sumario": "Arquitecta de Software con sólida experiencia en diseño y desarrollo de plataformas escalables...",
-  "contacto": ["tu.email@example.com", "+56 9 1234 5678", "linkedin.com/in/tunombre"],
+  "contacto": [
+    { "tipo": "email", "valor": "tu.email@example.com" },
+    { "tipo": "telefono", "valor": "+56 9 1234 5678" },
+    { "tipo": "linkedin", "valor": "linkedin.com/in/tunombre" }
+  ],
   "secciones": [
     {
-      "titulo": "Experiencia Laboral",
+      "titulo": "Experiencia Profesional",
       "tipo": "experiencia",
       "items": [
         {
@@ -61,8 +65,8 @@ Ejemplo de estructura
       ]
     },
     {
-      "titulo": "Formación",
-      "tipo": "formacion",
+      "titulo": "Educación",
+      "tipo": "educacion",
       "items": [
         {
           "titulo_estudio": "Ingeniería de Sistemas",

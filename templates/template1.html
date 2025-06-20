@@ -8,128 +8,119 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
-
 <div class="container">
 
-    <div class="header" style="border-bottom: 1px solid grey; padding-bottom: 10px;">
-        <div class="full-name">
-            <span class="first-name">{{ data.nombre }}</span> 
+    <!-- HEADER -->
+<div class="header">
+   
+        <!-- Full Name with first name on top -->
+        <div class="full-name" style="display: flex; flex-direction: column;">
+            <span class="first-name">{{ data.nombre }}</span>
             <span class="last-name">{{ data.apellido }}</span>
         </div>
-        <div class="contact-info">
-            <span class="email">CONTACTO: </span>
-            {% for item in data.contacto %}
-                <span class="contact-val">{{ item }}</span>
-                {% if not loop.last %}
-                <span class="separator"> </span>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="about">
-        <span class="position">{{ data.profesion }}:</span>
-        <span class="desc"> 
-            {{ data.sumario}}
-        </span>
-    </div>
 
-    {# --- Prepare filtered sections using 'rejectattr' --- #}
-    {% set other_sections = data["secciones"] | rejectattr('titulo', 'equalto', 'Experiencia Laboral') | list %}
-
-    {# --- Conditional rendering for 'other_sections' --- #}
-    {% if other_sections | length == 1 %}
-        {# If there's only one "other" section, it takes the whole width #}
-        <div class="section single-column-section"> {# New class for single column style #}
-            {% set section = other_sections[0] %} {# Get the single section #}
-            <div class="titulo">{{ section["titulo"] }}</div>
-            
-            {% if section.tipo == 'formacion' %}
-                {% for item in section["items"] %}
-                    <div class="education-item">
-                        <h3 class="study-title">{{ item.titulo_estudio }}</h3>
-                        <span class="institution">{{ item.institucion }}</span> - <span class="duration">{{ item.duracion }}</span>
-                        <p class="study-description">{{ item.descripcion }}</p>
-                    </div>
-                {% endfor %}
-            {% else %} {# Default for simple lists like Certificaciones, Habilidades etc. #}
-                {% for item in section["items"] %}
-                    <div class="items">{{ item | safe }}</div>
-                {% endfor %}
+        <!-- Contact Info -->
+<div class="contact-info">
+    {% for item in data.contacto %}
+        {% if item.tipo in ['email', 'telefono', 'linkedin'] %}
+        <div class="contact-item">
+            {% if item.tipo == 'email' %}
+                <i class="fas fa-envelope"></i>
+                <span>{{ item.valor }}</span>
+            {% elif item.tipo == 'telefono' %}
+                <i class="fas fa-phone"></i>
+                <span>{{ item.valor }}</span>
+            {% elif item.tipo == 'linkedin' %}
+                <i class="fab fa-linkedin"></i>
+<span>
+    <a href="{{ item.valor }}" target="_blank" style="text-decoration: none; color: inherit;">
+        in/{{ item.valor.rstrip('/').split('/')[-1] }}
+    </a>
+</span>
             {% endif %}
         </div>
-    {% elif other_sections | length > 1 %}
-        {# If there are more than one "other" sections, distribute them left/right #}
-        <div class="sections-columns">
-            <div class="left-column">
-                {% for section in other_sections %}
-                    {% if loop.index0 % 2 == 0 %} 
-                        <div class="section">
-                            <div class="titulo">{{ section["titulo"] }}</div>
-                            
-                            {% if section.tipo == 'formacion' %}
-                                {% for item in section["items"] %}
-                                    <div class="education-item">
-                                        <h3 class="study-title">{{ item.titulo_estudio }}</h3>
-                                        <span class="institution">{{ item.institucion }}</span> - <span class="duration">{{ item.duracion }}</span>
-                                        <p class="study-description">{{ item.descripcion }}</p>
-                                    </div>
-                                {% endfor %}
-                            {% else %} {# Default for simple lists #}
-                                {% for item in section["items"] %}
-                                    <div class="items">{{ item | safe }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
-            <div class="right-column">
-                {% for section in other_sections %}
-                    {% if loop.index0 % 2 != 0 %} 
-                        <div class="section">
-                            <div class="titulo">{{ section["titulo"] }}</div>
-                            
-                            {% if section.tipo == 'formacion' %}
-                                {% for item in section["items"] %}
-                                    <div class="education-item">
-                                        <h3 class="study-title">{{ item.titulo_estudio }}</h3>
-                                        <span class="institution">{{ item.institucion }}</span> - <span class="duration">{{ item.duracion }}</span>
-                                        <p class="study-description">{{ item.descripcion }}</p>
-                                    </div>
-                                {% endfor %}
-                            {% else %} {# Default for simple lists #}
-                                {% for item in section["items"] %}
-                                    <div class="items">{{ item | safe }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %} {# End of if/elif for other_sections #}
+</div>
 
-    {# --- Render "Experiencia Laboral" as a full-width section below the dynamic columns --- #}
-    {% set experience_section = data["secciones"] | selectattr('titulo', 'equalto', 'Experiencia Laboral') | first %}
+    <!-- SUMARIO -->
+    <div class="about">
+        <span class="position">{{ data.profesion }}:</span>
+        <span class="desc">{{ data.sumario }}</span>
+    </div>
 
-    {% if experience_section %}
-        <div class="section full-width-section">
-            <div class="titulo">{{ experience_section["titulo"] }}</div>
-            {% for item in experience_section["items"] %}
-                <div class="experience-item">
-                    <h3 class="job-title">{{ item.puesto }} <span class="company-name">en {{ item.empresa }}</span></h3>
-                    <span class="duration">{{ item.duracion }}</span>
-                    <ul class="job-description">
-                        {% for desc_point in item.descripcion %}
-                            <li>{{ desc_point }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+    <!-- EXPERIENCIA PROFESIONAL -->
+{% set experiencia = data["secciones"] | selectattr('titulo', 'equalto', 'Experiencia Profesional') | first %}
+{% if experiencia and experiencia["items"] and experiencia["items"] | length > 0 %}
+<div class="section full-width-section">
+    <div class="titulo">{{ experiencia["titulo"] }}</div>
+    {% for item in experiencia["items"] %}
+    <div class="experience-item">
+        <h3 class="job-title">{{ item.puesto }} <span class="company-name">en {{ item.empresa }}</span></h3>
+        <span class="duration">{{ item.duracion }}</span>
+        <ul class="job-description">
+            {% for desc_point in item.descripcion %}
+                <li>{{ desc_point }}</li>
             {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+    <!-- FORMACION ACADEMICA -->
+    {% set educacion = data["secciones"] | selectattr('titulo', 'equalto', 'Educación') | first %}
+    {% if educacion %}
+    <div class="section full-width-section">
+        <div class="titulo">{{ educacion["titulo"] }}</div>
+        {% for item in educacion["items"] %}
+        <div class="education-item">
+            <h3 class="study-title">{{ item.titulo_estudio }}</h3>
+            <span class="institution">{{ item.institucion }}</span> - <span class="duration">{{ item.duracion }}</span>
+            {% if item.descripcion %}
+                <p class="study-description">{{ item.descripcion }}</p>
+            {% endif %}
         </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- LISTAS SIMPLES EN DOS COLUMNAS -->
+    {% set listas = data["secciones"] | selectattr('tipo', 'equalto', 'lista_simple') | list %}
+    {% if listas %}
+    <div class="sections-columns">
+    <div class="left-column">
+        {% for section in listas %}
+            {% if loop.index0 is divisibleby 2 %}
+                <div class="section">
+                    <div class="titulo">{{ section["titulo"] }}</div>
+                    {% for item in section["items"] %}
+                        <div class="items">{{ item }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="right-column">
+        {% for section in listas %}
+            {% if loop.index0 is not divisibleby 2 %}
+                <div class="section">
+                    <div class="titulo">{{ section["titulo"] }}</div>
+                    {% for item in section["items"] %}
+                        <div class="items">{{ item }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
     {% endif %}
 
 </div>
