@@ -5,11 +5,11 @@
 
 }
 html, body {
-    /* Ensure no default browser margins/padding */
+    
     margin: 0;
     padding: 0;
-    width: 100%;  /* Ensure they take full width */
-    height: 100%; /* Ensure they take full height */
+    width: 100%;  
+    height: 100%; 
 }
 
 body {
@@ -30,17 +30,17 @@ body {
   margin-top: 5px;
 }
 .header {
-    display: flex; /* Makes the header a flex container */
-    justify-content: space-between; /* Pushes content to the ends: Full Name left, Contact Info right */
-    align-items: flex-start; /* Aligns items to the top of the header */
-    padding: 20px; /* Add some padding around your header content */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 20px; 
     border-bottom: 1px solid #ccc; /
 }
 
 .header .full-name {
-    display: flex; /* Makes the full name section a flex container */
-    flex-direction: column; /* Stacks first name on top of last name */
-    color: #333; /* Darker color for better readability */
+    display: flex; 
+    flex-direction: column; 
+    color: #333; 
     font-size: 3.5em;
     font-family:"Roboto Flex", sans-serif;
     text-transform: uppercase;
@@ -62,22 +62,22 @@ body {
 }
 
 .header .contact-info {
-    display: flex; /* Makes the contact info section a flex container */
-    flex-direction: column; /* Stacks contact items vertically */
-    align-items: flex-start; /* Aligns contact items to the right within their column */
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start;
     margin-left:5px;
   }
 
 .header .contact-info .contact-item {
-    display: flex; /* Makes each contact item a flex container */
-    align-items: center; /* Vertically aligns the icon and text */
-    margin-bottom: 5px; /* Adds a little space between contact items */
-  font-family:"Roboto Flex", sans-serif; /* Use a sans-serif font for contact info */
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 5px; 
+  font-family:"Roboto Flex", sans-serif; 
 }
 
 .header .contact-info .contact-item i {
-    margin-right: 8px; /* Adds space between the icon and the text */
-    font-size: 1.1em; /* Adjust icon size if needed */
+    margin-right: 8px; 
+    font-size: 1.1em;
 }
 .about .position {
   font-weight: 800;
@@ -107,16 +107,16 @@ body {
   
   
 .sections-columns {
-    display: flex; /* Makes the container a flex container */
-    justify-content: space-between; /* Distributes space between columns */
-    margin-top: 10px; /* Add some space above the columns */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
     gap: 20px;
 }
 
 
 .left-column,
 .right-column {
-    flex: 1; /* Allows columns to grow and shrink equally */
+    flex: 1; 
 }
 
 
@@ -158,16 +158,16 @@ body {
 
 
 .experience-item {
-    margin-bottom: 20px; /* Space between items */
-    padding-bottom: 20px; /* Space for the line and padding below it */
-    border-bottom: 1px solid #e0e0e0; /* The grey horizontal line */
+    margin-bottom: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 1px solid #e0e0e0;
     font-family:"Roboto Flex", sans-serif;
 }
 
-/* Remove the border from the last item in the list */
+
 .experience-item:last-child {
     border-bottom: none;
-    margin-bottom: 0; /* Remove extra margin if this is the last item in the section */
+    margin-bottom: 0; 
     padding-bottom: 0;
     font-family:"Roboto Flex", sans-serif;
 }

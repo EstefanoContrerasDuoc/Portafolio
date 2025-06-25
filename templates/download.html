@@ -98,7 +98,7 @@ header {
 }
 .download-link {
   display: inline-block;
-  background-color: #007bff;
+  background-color: #ffffff;
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
@@ -108,9 +108,9 @@ header {
   transition: background-color 0.3s ease;
 }
 .download-link:hover {
-  background-color: #0056b3;
+  background-color: #d9ecff;
 }
-/* Styles for the iframe container and the iframe itself */
+
 .preview-container {
   width: 600px;
   height: 600px;
@@ -129,7 +129,7 @@ header {
   border: none;
   display: block;
 }
-/* Responsive adjustments for smaller screens */
+
 @media (max-width: 1200px) {
   .cv-card {
     width: 98vw;
@@ -164,7 +164,7 @@ header {
     <p>Selecciona un estilo profesional para mejorar tu presentación</p>
   </header>
 
- <section class="cv-gallery">
+<section class="cv-gallery">
 <div class="cv-card">
   <div class="card-content">
     <div class="cv-info">
@@ -196,10 +196,10 @@ header {
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.9.179/build/pdf.min.js"></script>
 <script>
-  // Set the worker source for PDF.js
+  
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.9.179/build/pdf.worker.min.js';
 
-    // Async function to render PDF on a given canvas
+    
     async function renderPDFPreview(pdfUrl, canvasId) {
       console.log('Attempting to load PDF:', pdfUrl);
       const canvas = document.getElementById(canvasId);
@@ -210,19 +210,19 @@ header {
         const pdf = await loadingTask.promise;
         console.log('PDF loaded:', pdf);
 
-        // Get the first page
+        
         const page = await pdf.getPage(1);
         console.log('Page 1 obtained');
 
-        // Set scale for the preview
+        
         const scale = 0.5;
         const viewport = page.getViewport({ scale: scale });
 
-        // Set canvas dimensions
+        
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
-        // Render the page
+        
         const renderContext = {
           canvasContext: context,
           viewport: viewport
@@ -231,28 +231,28 @@ header {
         console.log('Page rendered');
       } catch (error) {
         console.error('Error loading or rendering PDF:', error);
-        // Optionally, display an error message on the canvas or hide the preview
-        context.clearRect(0, 0, canvas.width, canvas.height); // Clear if error
-        context.fillText("Error al cargar CV", 10, 20); // Simple error text
+        
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillText("Error al cargar CV", 10, 20); 
       }
     }
 
-    // This function is no longer needed for automatic deployment,
-    // but useful if you decide to clear canvases later on interaction.
+    
+    
     function clearCanvas(canvasId) {
       const canvas = document.getElementById(canvasId);
       const context = canvas.getContext('2d');
       context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // --- Automatic Deployment Logic ---
-    // This script will run once the DOM is fully loaded.
+    
+    
     document.addEventListener('DOMContentLoaded', () => {
-      // Call renderPDFPreview for each CV you want to display
-      // Ensure these URLs are correctly provided by your Flask/Jinja context
+      
+      
       renderPDFPreview('{{ url_for('output_files', filename=file1) }}', 'canvas1');
       renderPDFPreview('{{ url_for('output_files', filename=file2) }}', 'canvas2');
-      // Add more calls here if you have Diseño N°3, N°4, etc.
+      
     });
 </script>
 </body>
